@@ -6,6 +6,4 @@ root: intro
 parts:
   - caption: Common
     chapters:
-    - file: markdown
-    - file: notebooks
-    - file: markdown-notebooks
+    - file: Common/1. SSH key.md
