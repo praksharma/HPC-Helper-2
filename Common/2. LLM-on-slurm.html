@@ -624,6 +624,7 @@ Tue<span class="w"> </span>Jan<span class="w"> </span><span class="m">28</span><
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--network<span class="o">=</span>host<span class="w"> </span>-v<span class="w"> </span>open-webui:/app/backend/data<span class="w"> </span>-e<span class="w"> </span><span class="nv">OLLAMA_BASE_URL</span><span class="o">=</span>http://127.0.0.1:11434<span class="w"> </span>--name<span class="w"> </span>open-webui<span class="w"> </span>--restart<span class="w"> </span>always<span class="w"> </span>ghcr.io/open-webui/open-webui:main
 </pre></div>
 </div>
+<p>More trobleshooting can be found <a class="reference external" href="https://docs.openwebui.com/troubleshooting/connection-error">here</a>.</p>
 <p>This will pull the image if not already present and start the web UI. Make sure <code class="docutils literal notranslate"><span class="pre">OLLAMA_BASE_URL=http://127.0.0.1:11434</span></code> is set correctly set as the local port running Ollama is <code class="docutils literal notranslate"><span class="pre">11434</span></code>.</p>
 <p>Now we can open open this URL in the browser <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code> and use the web UI to interact with Ollama. First time we need to create an account and login which is just local.</p>
 <p>Now you can use the models and chat with Ollama using the web UI. Here are some snips.</p>
