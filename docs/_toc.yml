@@ -7,3 +7,6 @@ parts:
   - caption: Common
     chapters:
     - file: Common/1. SSH key.md
+  - caption: Ollama on Slurm
+    chapters:
+    - file: Common/2. LLM-on-slurm.ipynb
