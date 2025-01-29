@@ -15,3 +15,8 @@ parts:
     - file: Cumulus/index.md
       sections:
       - file: Cumulus/1. Rules and jobs.ipynb
+  - caption: CSD3
+    chapters:
+    - file: CSD3/index.md
+      sections:
+      - file: CSD3/1. Setup.ipynb

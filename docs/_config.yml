@@ -1,15 +1,31 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: HPC Helper 2
-author: Prakhar Sharma
-copyright: "2025"
+copyright: "2025, By Prakhar Sharma"
 logo: assets/HPC_Helper_Logo.png
 
 sphinx:
   config:
     html_theme: pydata_sphinx_theme
-
+    html_theme_options:
+      logo: 
+        text: "HPC Helper 2"
+        image_dark: "assets/HPC_Helper_Logo.png"
+      secondary_sidebar_items: page-toc, edit-this-page, sourcelink
+      back_to_top_button: True
+      use_edit_page_button: True
+      external_links:
+        - url: "https://github.com/praksharma"
+          name: "GitHub Profile"
+      header_links_before_dropdown: 3
+      github_url: https://github.com/praksharma/HPC-Helper-2
+      footer_start: copyright
+      footer_center: sphinx-version
+    html_context:
+      github_user: "praksharma"
+      github_repo: "HPC-Helper-2"
+      github_version: "main"
+      doc_path: "docs"
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -24,13 +40,13 @@ latex:
 # Add a bibtex file so that we can create citations
 
 # Information about where the book exists on the web
-repository:
-  url: https://github.com/praksharma/HPC-Helper-2  # Online location of your book
-  path_to_book: docs  # Optional path to your book, relative to the repository root
-  branch: master  # Which branch of the repository should be used when creating links (optional)
+# repository:
+#   url: https://github.com/praksharma/HPC-Helper-2  # Online location of your book
+#   path_to_book: docs  # Optional path to your book, relative to the repository root
+#   branch: master  # Which branch of the repository should be used when creating links (optional)
 
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
-html:
-  use_issues_button: true
-  use_repository_button: true
+# # Add GitHub buttons to your book
+# # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+# html:
+#   use_issues_button: true
+#   use_repository_button: true
