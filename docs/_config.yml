@@ -3,8 +3,13 @@
 
 title: HPC Helper 2
 author: Prakhar Sharma
-copyright: "2024"
+copyright: "2025"
 logo: assets/HPC_Helper_Logo.png
+
+sphinx:
+  config:
+    html_theme: pydata_sphinx_theme
+
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html

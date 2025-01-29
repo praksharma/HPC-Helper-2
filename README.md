@@ -32,3 +32,7 @@ jupyter-book build --all docs/
 ```sh
 ghp-import -n -p -f docs/_build/html
 ```
+
+## PyData sphinx theme
+I found [PyData's sphinx theme](https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html) to be much more useful for big projects. The structure of the theme is big more complicated than the default jupyter book theme. [Here](https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html) is a nice documentation about the layout of the theme.
+
