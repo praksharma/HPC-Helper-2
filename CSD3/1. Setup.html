@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Copy SSH public key &#8212; My Jupyter Book</title>
+    <title>Setup &#8212; My Jupyter Book</title>
   
   
   
@@ -59,11 +59,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Common/1. SSH key';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'CSD3/1. Setup';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Running Ollama and Open WebUI on HPC with Apptainer" href="2.%20LLM-on-slurm.html" />
-    <link rel="prev" title="Common" href="index.html" />
+    <link rel="prev" title="CSD3" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -150,8 +149,8 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="index.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../Common/index.html">
     Common
   </a>
 </li>
@@ -164,8 +163,8 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../CSD3/index.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
     CSD3
   </a>
 </li>
@@ -276,8 +275,8 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="index.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../Common/index.html">
     Common
   </a>
 </li>
@@ -290,8 +289,8 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../CSD3/index.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
     CSD3
   </a>
 </li>
@@ -347,8 +346,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Copy SSH public key</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.%20LLM-on-slurm.html">Running Ollama and Open WebUI on HPC with Apptainer</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup</a></li>
 </ul>
 </div>
 </nav></div>
@@ -390,9 +388,9 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Common</a></li>
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">CSD3</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Copy SSH public key</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Setup</span></li>
   </ul>
 </nav>
 </div>
@@ -409,19 +407,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="copy-ssh-public-key">
-<h1>Copy SSH public key<a class="headerlink" href="#copy-ssh-public-key" title="Link to this heading">#</a></h1>
-<p>There are two ways.</p>
-<section id="using-ssh-copy-id">
-<h2>Using <code class="docutils literal notranslate"><span class="pre">ssh-copy-id</span></code><a class="headerlink" href="#using-ssh-copy-id" title="Link to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="nb">id</span> <span class="n">alias_name</span>
-</pre></div>
-</div>
-</section>
-<section id="copying-manually">
-<h2>Copying manually<a class="headerlink" href="#copying-manually" title="Link to this heading">#</a></h2>
-<p>You can copy the public key manually to the remote server. The public key is usually located in <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa.pub</span></code>. Copy the content of the file and paste it in the <code class="docutils literal notranslate"><span class="pre">~/.ssh/authorized_keys</span></code> file on the remote server.</p>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -437,7 +424,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./Common"
+            path: "./CSD3"
         },
         predefinedOutput: true
     }
@@ -459,17 +446,8 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Common</p>
+        <p class="prev-next-title">CSD3</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="2.%20LLM-on-slurm.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Running Ollama and Open WebUI on HPC with Apptainer</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -483,21 +461,10 @@
 
 
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> 
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-ssh-copy-id">Using <code class="docutils literal notranslate"><span class="pre">ssh-copy-id</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-manually">Copying manually</a></li>
-</ul>
-  </nav></div>
-
-  <div class="sidebar-secondary-item">
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/Common/1. SSH key.md">
+    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/CSD3/1. Setup.ipynb">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -513,7 +480,7 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/Common/1. SSH key.md"
+      <li><a href="../_sources/CSD3/1. Setup.ipynb"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
