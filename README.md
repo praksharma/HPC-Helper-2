@@ -13,8 +13,9 @@ This docs is written on top of Jupyter book.
 
 ## Packages to install
 
-* `ghp-import`
-* `jupyter-book`
+```sh
+pip install -r requirements.txt
+```
 
 ## Build the docs
 
