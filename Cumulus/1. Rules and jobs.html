@@ -410,6 +410,65 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="basic-information-and-job-submission">
 <h1>Basic information and job submission<a class="headerlink" href="#basic-information-and-job-submission" title="Link to this heading">#</a></h1>
+<p>All the commands are pretty standard such as <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code>, <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code>, <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code>, <code class="docutils literal notranslate"><span class="pre">srun</span></code>, <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>, <code class="docutils literal notranslate"><span class="pre">sinfo</span></code>, <code class="docutils literal notranslate"><span class="pre">squeue</span></code>, <code class="docutils literal notranslate"><span class="pre">sacct</span></code>, <code class="docutils literal notranslate"><span class="pre">scancel</span></code> etc. And tmux is already in the path for neckbeards. Cumulus consists of 3 partitions.</p>
+<ul class="simple">
+<li><p>CPU</p></li>
+<li><p>GPU: Each node has 3 NVIDIA A100 40GB</p></li>
+<li><p>Visio: Each node has 3 NVIDIA A40 48GB</p></li>
+</ul>
+<p>Currently, there is no timelimit, no QOS, no separate <code class="docutils literal notranslate"><span class="pre">scratch</span></code> or <code class="docutils literal notranslate"><span class="pre">work</span></code> partition even no user disk usage quota.</p>
+<p>One more thing the compute nodes are not connected to the internet. So things like <code class="docutils literal notranslate"><span class="pre">wandb</span></code> won’t work.</p>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
+<p>Over the years I have learnt that the easiest way to run a python environment without messing with <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> or modules is to use miniconda. Click <a class="reference external" href="https://docs.anaconda.com/miniconda/install/">here</a> to see how to install miniconda on Linux.</p>
+<p><a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">This</a> is the bible of setting up a conda environment.</p>
+<p>Here are some basic commands.</p>
+<ul class="simple">
+<li><p>Create a new environment</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>myenv<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12
+</pre></div>
+</div>
+<p>Not specifying the python version will not install python at all. LOL.</p>
+<ul class="simple">
+<li><p>Check list of environments</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>list
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Activate the environment</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>myenv
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Deactivate the environment</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>deactivate
+</pre></div>
+</div>
+</section>
+<section id="installing-pytorch">
+<h2>Installing pytorch<a class="headerlink" href="#installing-pytorch" title="Link to this heading">#</a></h2>
+<p>Installing PyTorch is little bit tricky on Cumulus. PyTorch binaries are compiled against a specific version of CUDA. Currently, Cumulus has two versions of NVIDIA driver compiled against CUDA: 12.0 and 12.2.</p>
+<p>Generally, one should install PyTorch compiled with older versions of CUDA, if the exact versions is not available on PyTorch’s website. So, in my case I <a class="reference external" href="https://pytorch.org/get-started/previous-versions/#linux-and-windows">downloaded</a> PyTorch 2.5.1 compiled with CUDA 12.1.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>On Nov 18 2024, PyTorch <a class="reference external" href="https://dev-discuss.pytorch.org/t/pytorch-deprecation-of-conda-nightly-builds/2590">stopped publishing</a> Anaconda packages.</p>
+</div>
+</section>
+<section id="interactive-job">
+<h2>Interactive job<a class="headerlink" href="#interactive-job" title="Link to this heading">#</a></h2>
+<p>This is pretty standard. We don’t need to specify any QOS, timelimit, account etc. Just the partition and number of GPUs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>--gpus<span class="o">=</span><span class="m">1</span><span class="w"> </span>-p<span class="w"> </span>visio<span class="w"> </span>--pty<span class="w"> </span>/bin/bash<span class="w"> </span>-i
+</pre></div>
+</div>
+</section>
+<section id="job-submission">
+<h2>Job submission<a class="headerlink" href="#job-submission" title="Link to this heading">#</a></h2>
+<p>TBD</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -469,6 +528,19 @@
                 <dialog id="pst-secondary-sidebar-modal"></dialog>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-pytorch">Installing pytorch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-job">Interactive job</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-submission">Job submission</a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 
