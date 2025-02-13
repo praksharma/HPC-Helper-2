@@ -347,6 +347,7 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup</a></li>
+
 </ul>
 </div>
 </nav></div>
@@ -409,6 +410,44 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="setup">
 <h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h1>
+<p>The Cambridge Service for Data Driven Discovery (CSD3) has a nice <a class="reference external" href="https://docs.hpc.cam.ac.uk/hpc/index.html">documentation</a>. To access the cluster, you need to have an account. Now there are two SAFE different SAFE accounts.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://safe.epcc.ed.ac.uk/">https://safe.epcc.ed.ac.uk/</a> : For ARCHER2 registration</p></li>
+<li><p><a class="reference external" href="https://safe.epcc.ed.ac.uk/dirac/">https://safe.epcc.ed.ac.uk/dirac/</a> : For CSD3 registration</p></li>
+</ul>
+<p>In my case I already had a SAFE account for ARCHER2, so I used the same account to access CSD3. Just need to click on <code class="docutils literal notranslate"><span class="pre">safe</span> <span class="pre">sign</span> <span class="pre">in</span></code> button and use SAFE ARCHER2 credentials.</p>
+<p><img alt="image.png" src="../_images/login.png" /></p>
+<section id="totp-generation">
+<h2>TOTP generation<a class="headerlink" href="#totp-generation" title="Link to this heading">#</a></h2>
+<p>Unlike other HPC clusters, CSD3 doesn’t involve any password. You have to upload at least one public key to SAFE DIRAC account. Once that is done, you can generate a TOTP token through a special node: <code class="docutils literal notranslate"><span class="pre">multi.hpc.cam.ac.uk</span></code>.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="multiplexing-ssh-connections">
+<h1>Multiplexing SSH connections<a class="headerlink" href="#multiplexing-ssh-connections" title="Link to this heading">#</a></h1>
+<p>One of the problems with CSD3 is that you have to use the TOTP token every single time you login to CSD3. One way to avoid is use by multiplexing ssh connections. The first login will open a master connection and all subsequent connections will use the master connection. This way you only need to enter the TOTP token once, until the master connection is dies or closed.</p>
+<p>We need to add the following lines to the <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Host<span class="w"> 	</span>CSD3
+<span class="w">    	</span>User<span class="w">	</span>ir-shar8
+<span class="w">    	</span>HostName<span class="w">	</span>login.hpc.cam.ac.uk
+<span class="w">    	</span>ControlMaster<span class="w">	</span>auto
+<span class="w">    	</span>ControlPath<span class="w">	</span>~/.ssh/control-%C
+<span class="w">    	</span>ControlPersist<span class="w">	</span><span class="m">3600</span>
+<span class="w">    	</span>ServerAliveInterval<span class="w">	</span><span class="m">60</span>
+<span class="w">    	</span>ServerAliveCountMax<span class="w">	</span><span class="m">5</span>
+</pre></div>
+</div>
+<p>Here,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ControlMaster</span> <span class="pre">auto</span></code> : This will open a master connection.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ControlPath</span> <span class="pre">~/.ssh/control-%C</span></code> : This will store the master connection in the <code class="docutils literal notranslate"><span class="pre">~/.ssh/</span></code> directory. <code class="docutils literal notranslate"><span class="pre">%C</span></code> ensures a unique filename based on host/user/port to avoid conflicts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ControlPersist</span> <span class="pre">3600</span></code> : This will keep the master connection alive for 3600 seconds or 1 hour.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ServerAliveInterval</span> <span class="pre">60</span></code> : Sends a keep-alive packet every 60 seconds to prevent idle disconnects.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ServerAliveCountMax</span> <span class="pre">5</span></code> : SSH will retry sending 5 keep-alive packets before considering the connection dead.</p></li>
+</ul>
+<p>Now the first connection will ask for the TOTP token. All subsequent connections will use the master connection for the next one hour. We can actually check the master connection by running the following command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-l<span class="w"> </span>~/.ssh/control-*
+</pre></div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -459,6 +498,21 @@
                 <dialog id="pst-secondary-sidebar-modal"></dialog>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#totp-generation">TOTP generation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplexing-ssh-connections">Multiplexing SSH connections</a></li>
+</ul>
+
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 
