@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CSD3 &#8212; My Jupyter Book</title>
+    <title>Basic information &#8212; My Jupyter Book</title>
   
   
   
@@ -59,11 +59,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'CSD3/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'CSD3/2. Rules and jobs';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Setup" href="1.%20Setup.html" />
-    <link rel="prev" title="Basic information and job submission" href="../Cumulus/1.%20Rules%20and%20jobs.html" />
+    <link rel="prev" title="Setup" href="1.%20Setup.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -165,7 +164,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="index.html">
     CSD3
   </a>
 </li>
@@ -291,7 +290,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="index.html">
     CSD3
   </a>
 </li>
@@ -346,10 +345,10 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1.%20Setup.html">Setup</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html">Basic information</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic information</a></li>
 
 
 </ul>
@@ -392,7 +391,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">CSD3</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">CSD3</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Basic information</span></li>
   </ul>
 </nav>
 </div>
@@ -409,18 +411,94 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="csd3">
-<h1>CSD3<a class="headerlink" href="#csd3" title="Link to this heading">#</a></h1>
-<p>Welcome to the CSD3 section. Choose a topic from the sidebar.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="1.%20Setup.html">Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1.%20Setup.html#multiplexing-ssh-connections">Multiplexing SSH connections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html">Basic information</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html#usage-credits">Usage credits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html#jobs">Jobs</a></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-information">
+<h1>Basic information<a class="headerlink" href="#basic-information" title="Link to this heading">#</a></h1>
+<p>CSD3 runs on Rocky Linux, which is based on RedHat CentOS with a very old Linux kernel. CSD3 has multiple generations of Xeon processors such as Cascade Lake, Ice Lake and Sapphire Rapids.</p>
+<section id="login-nodes">
+<h2>Login nodes<a class="headerlink" href="#login-nodes" title="Link to this heading">#</a></h2>
+<p>The are multiple login nodes for load balancing. There are 4 Icelake generation login nodes from <code class="docutils literal notranslate"><span class="pre">login-q-1</span></code> to <code class="docutils literal notranslate"><span class="pre">login-q-4</span></code> and 4 CascadeLake generation login nodes from <code class="docutils literal notranslate"><span class="pre">login-p-1</span></code> to <code class="docutils literal notranslate"><span class="pre">login-p-4</span></code>.</p>
+<p>We can directly ssh into the individual login nodes using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>username@login-q-1.hpc.cam.ac.uk
+</pre></div>
 </div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="usage-credits">
+<h1>Usage credits<a class="headerlink" href="#usage-credits" title="Link to this heading">#</a></h1>
+<p>We can check the usage credits using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>ir-shar8@login-p-1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>mybalance
+User<span class="w">           </span>Usage<span class="w"> </span><span class="p">|</span><span class="w">        </span>Account<span class="w">  </span><span class="p">|</span><span class="w">    </span>Usage<span class="w">   </span><span class="p">|</span><span class="w"> </span>Account<span class="w"> </span>Limit<span class="w"> </span><span class="p">|</span><span class="w"> </span>Available<span class="w"> </span><span class="o">(</span>hours<span class="o">)</span><span class="w"> </span>
+----------<span class="w"> </span>---------<span class="w"> </span>+<span class="w"> </span>----------------+------------+<span class="w"> </span>--------------+<span class="w"> </span>-----------------
+ir-shar8<span class="w">           </span><span class="m">0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>UKAEA-AP002-CPU<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">53</span>,185,628<span class="w"> </span><span class="p">|</span><span class="w">    </span><span class="m">60</span>,808,908<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">7</span>,623,280
+ir-shar8<span class="w">           </span><span class="m">0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>UKAEA-AP002-GPU<span class="w"> </span><span class="p">|</span><span class="w">   </span><span class="m">155</span>,208<span class="w">  </span><span class="p">|</span><span class="w">       </span><span class="m">183</span>,328<span class="w"> </span><span class="p">|</span><span class="w">   </span><span class="m">28</span>,120
+</pre></div>
+</div>
+<p>Here, I have 0 usage. The usage in the third column is the hours used by all users under this project. Subsequent columns show the account limit for all users and the available hours for all users.</p>
+<section id="partitions">
+<h2>Partitions<a class="headerlink" href="#partitions" title="Link to this heading">#</a></h2>
+<p>There is <code class="docutils literal notranslate"><span class="pre">cpu-p</span></code>, <code class="docutils literal notranslate"><span class="pre">cpu-q</span></code> and <code class="docutils literal notranslate"><span class="pre">cpu-r</span></code> representing Cascade Lake, Ice Lake, Sapphire Node. The GPU nodes are represented as <code class="docutils literal notranslate"><span class="pre">gpu</span></code> with ampere partition name signifying  the NVIDIA A100 GPUs. Since, we are only interested in machine learning, we will be talking about the <code class="docutils literal notranslate"><span class="pre">gpu</span></code> partition only. All parititon names with <code class="docutils literal notranslate"><span class="pre">-long</span></code> suffix are for infinite timelimit. Once can check all the above information using <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> command. <a class="reference external" href="https://docs.hpc.cam.ac.uk/hpc/user-guide/a100.html">Here</a> is full docs about the ampere partition.</p>
+<p>Here are the specs of the GPU nodes:</p>
+<ul class="simple">
+<li><p>2x AMD EPYC 7763 64-Core Processor 1.8GHz (128 cores in total)</p></li>
+<li><p>1000 GiB RAM</p></li>
+<li><p>4x NVIDIA A100-SXM-80GB GPUs</p></li>
+</ul>
+<p>All the 4 GPUs can be used with an exclusive QOS.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="jobs">
+<h1>Jobs<a class="headerlink" href="#jobs" title="Link to this heading">#</a></h1>
+<section id="interactive-jobs">
+<h2>Interactive jobs<a class="headerlink" href="#interactive-jobs" title="Link to this heading">#</a></h2>
+<p>Here is a basic template for an interactive job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--account<span class="o">=</span>UKAEA-AP002-GPU<span class="w"> </span>--partition<span class="o">=</span>ampere<span class="w"> </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00:00<span class="w">  </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+</pre></div>
+</div>
+<p>This might give an error,</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>ir-shar8@login-p-1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>srun<span class="w"> </span>--account<span class="o">=</span>UKAEA-AP002-GPU<span class="w"> </span>--partition<span class="o">=</span>ampere<span class="w"> </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+srun:<span class="w"> </span>job<span class="w"> </span><span class="m">5096996</span><span class="w"> </span>queued<span class="w"> </span>and<span class="w"> </span>waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>resources
+srun:<span class="w"> </span>job<span class="w"> </span><span class="m">5096996</span><span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>allocated<span class="w"> </span>resources
+<span class="s1">&#39;abrt-cli status&#39;</span><span class="w"> </span>timed<span class="w"> </span>out
+<span class="o">[</span>ir-shar8@gpu-q-8<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>nvidia-smi
+Fri<span class="w"> </span>Feb<span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="m">00</span>:18:59<span class="w"> </span><span class="m">2025</span><span class="w">       </span>
++-----------------------------------------------------------------------------------------+
+<span class="p">|</span><span class="w"> </span>NVIDIA-SMI<span class="w"> </span><span class="m">550</span>.144.03<span class="w">             </span>Driver<span class="w"> </span>Version:<span class="w"> </span><span class="m">550</span>.144.03<span class="w">     </span>CUDA<span class="w"> </span>Version:<span class="w"> </span><span class="m">12</span>.4<span class="w">     </span><span class="p">|</span>
+<span class="p">|</span>-----------------------------------------+------------------------+----------------------+
+<span class="p">|</span><span class="w"> </span>GPU<span class="w">  </span>Name<span class="w">                 </span>Persistence-M<span class="w"> </span><span class="p">|</span><span class="w"> </span>Bus-Id<span class="w">          </span>Disp.A<span class="w"> </span><span class="p">|</span><span class="w"> </span>Volatile<span class="w"> </span>Uncorr.<span class="w"> </span>ECC<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Fan<span class="w">  </span>Temp<span class="w">   </span>Perf<span class="w">          </span>Pwr:Usage/Cap<span class="w"> </span><span class="p">|</span><span class="w">           </span>Memory-Usage<span class="w"> </span><span class="p">|</span><span class="w"> </span>GPU-Util<span class="w">  </span>Compute<span class="w"> </span>M.<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">                                         </span><span class="p">|</span><span class="w">                        </span><span class="p">|</span><span class="w">               </span>MIG<span class="w"> </span>M.<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="o">=========================================</span>+<span class="o">========================</span>+<span class="o">======================</span><span class="p">|</span>
+<span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>NVIDIA<span class="w"> </span>A100-SXM4-80GB<span class="w">          </span>On<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">00000000</span>:81:00.0<span class="w"> </span>Off<span class="w"> </span><span class="p">|</span><span class="w">                    </span><span class="m">0</span><span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>N/A<span class="w">   </span>39C<span class="w">    </span>P0<span class="w">             </span>67W<span class="w"> </span>/<span class="w">  </span>500W<span class="w"> </span><span class="p">|</span><span class="w">       </span>1MiB<span class="w"> </span>/<span class="w">  </span>81920MiB<span class="w"> </span><span class="p">|</span><span class="w">      </span><span class="m">0</span>%<span class="w">      </span>Default<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">                                         </span><span class="p">|</span><span class="w">                        </span><span class="p">|</span><span class="w">             </span>Disabled<span class="w"> </span><span class="p">|</span>
++-----------------------------------------+------------------------+----------------------+
+<span class="w">                                                                                         </span>
++-----------------------------------------------------------------------------------------+
+<span class="p">|</span><span class="w"> </span>Processes:<span class="w">                                                                              </span><span class="p">|</span>
+<span class="p">|</span><span class="w">  </span>GPU<span class="w">   </span>GI<span class="w">   </span>CI<span class="w">        </span>PID<span class="w">   </span>Type<span class="w">   </span>Process<span class="w"> </span>name<span class="w">                              </span>GPU<span class="w"> </span>Memory<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">        </span>ID<span class="w">   </span>ID<span class="w">                                                               </span>Usage<span class="w">      </span><span class="p">|</span>
+<span class="p">|</span><span class="o">=========================================================================================</span><span class="p">|</span>
+<span class="p">|</span><span class="w">  </span>No<span class="w"> </span>running<span class="w"> </span>processes<span class="w"> </span>found<span class="w">                                                             </span><span class="p">|</span>
++-----------------------------------------------------------------------------------------+
+</pre></div>
+</div>
+<p>But if the prompt changes from <code class="docutils literal notranslate"><span class="pre">login</span></code> to <code class="docutils literal notranslate"><span class="pre">gpu</span></code>, then the job is running on the GPU node.</p>
+</section>
+<section id="batch-jobs">
+<h2>Batch jobs<a class="headerlink" href="#batch-jobs" title="Link to this heading">#</a></h2>
+<p>Here is a basic template for a batch job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=UKAEA-AP002-GPU</span>
+<span class="c1">#SBATCH --partition=ampere</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --gres=gpu:1</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello from CSD3!&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>output.txt
+hostname<span class="w"> </span>&gt;&gt;<span class="w"> </span>output.txt
+nvidia-smi<span class="w"> </span>&gt;&gt;<span class="w"> </span>output.txt
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -453,22 +531,13 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../Cumulus/1.%20Rules%20and%20jobs.html"
+       href="1.%20Setup.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Basic information and job submission</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="1.%20Setup.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Setup</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -482,10 +551,33 @@
 
 
   <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic information</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#login-nodes">Login nodes</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-credits">Usage credits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partitions">Partitions</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs">Jobs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-jobs">Interactive jobs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-jobs">Batch jobs</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/CSD3/index.md">
+    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/CSD3/2. Rules and jobs.ipynb">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -501,7 +593,7 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/CSD3/index.md"
+      <li><a href="../_sources/CSD3/2. Rules and jobs.ipynb"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
