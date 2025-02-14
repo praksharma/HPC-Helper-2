@@ -10,6 +10,8 @@ parts:
       sections:
       - file: Common/1. SSH key.md
       - file: Common/2. LLM-on-slurm.ipynb
+      - file: Common/3. using modern terminal.ipynb
+      - file: Common/4. TOTP management.ipynb
   - caption: Cumulus
     chapters:
     - file: Cumulus/index.md
@@ -20,3 +22,4 @@ parts:
     - file: CSD3/index.md
       sections:
       - file: CSD3/1. Setup.ipynb
+      - file: CSD3/2. Rules and jobs.ipynb
