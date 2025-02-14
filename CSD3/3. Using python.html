@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CSD3 &#8212; My Jupyter Book</title>
+    <title>Using python &#8212; My Jupyter Book</title>
   
   
   
@@ -59,11 +59,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'CSD3/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'CSD3/3. Using python';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Setup" href="1.%20Setup.html" />
-    <link rel="prev" title="Basic information and job submission" href="../Cumulus/1.%20Rules%20and%20jobs.html" />
+    <link rel="prev" title="Basic information" href="2.%20Rules%20and%20jobs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -165,7 +164,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="index.html">
     CSD3
   </a>
 </li>
@@ -291,7 +290,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="index.html">
     CSD3
   </a>
 </li>
@@ -346,13 +345,13 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1.%20Setup.html">Setup</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html">Basic information</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="3.%20Using%20python.html">Using python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Using python</a></li>
 </ul>
 </div>
 </nav></div>
@@ -393,7 +392,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">CSD3</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">CSD3</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Using python</span></li>
   </ul>
 </nav>
 </div>
@@ -410,19 +412,57 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="csd3">
-<h1>CSD3<a class="headerlink" href="#csd3" title="Link to this heading">#</a></h1>
-<p>Welcome to the CSD3 section. Choose a topic from the sidebar.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="1.%20Setup.html">Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1.%20Setup.html#multiplexing-ssh-connections">Multiplexing SSH connections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html">Basic information</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html#usage-credits">Usage credits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html#jobs">Jobs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3.%20Using%20python.html">Using python</a></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="using-python">
+<h1>Using python<a class="headerlink" href="#using-python" title="Link to this heading">#</a></h1>
+<p>I never thought that using python on a HPC cluster might be a problem, and I will ever need to document it. CSD3 contains partitions with multiple CPUs brands. The Ampere GPU nodes runs of a AMD CPU and the login nodes run on Intel CPU. So, python compiled for a Intel CPUs will not work on AMD CPUs because of Intel-specific instructions (like AVX-512) don’t exist on AMD EPYC. So, if you created a virtual environment on the login node and tried to run it on the compute node, it will not work and give you the following error:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span><span class="w"> </span><span class="o">[</span>ir-shar8@gpu-q-8<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>python
+Illegal<span class="w"> </span>instruction
+</pre></div>
 </div>
+<p>However, Dr. Lisa made sure that AMD CPUs are fully compatible with Intel’s x86-64 instruction set. That is why when the virtual environment is created on the compute node, it will work on the login node. To check the CPU brand, you can use the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;model name&quot;</span>
+</pre></div>
+</div>
+<section id="using-python-compiled-with-amd-cpu">
+<h2>Using python compiled with AMD CPU<a class="headerlink" href="#using-python-compiled-with-amd-cpu" title="Link to this heading">#</a></h2>
+<p>CSD3 has bare-metal python, virtualenv, anaconda and miniconda installed as modules. But, all of them are very old and won’t work with the NVIDIA driver 550 compiled against CUDA 12.4. Sure one can just download miniconda from internet, but if you lazy like me, just use the following module.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>python/3.11.0-icl<span class="w"> </span>
+</pre></div>
+</div>
+<p>This is only new python version which is compatible with the NVIDIA driver we have on ampere partitions. Remember to create a virtual environment on the compute node not on the login node. The compute nodes have internet access, so you can download the packages you need.</p>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Python compiled on AMD = Universally compatible.</p></li>
+<li><p>Python compiled on Intel = Not always AMD-compatible (because of AVX-512).</p></li>
+</ul>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p>Virtual environment running on the login node:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>ir-shar8@login-p-1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+<span class="o">(</span>.venv<span class="o">)</span><span class="w"> </span><span class="o">[</span>ir-shar8@login-p-1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>python
+Python<span class="w"> </span><span class="m">3</span>.11.11<span class="w"> </span><span class="o">(</span>main,<span class="w"> </span>Dec<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">2024</span>,<span class="w"> </span><span class="m">16</span>:28:23<span class="o">)</span><span class="w"> </span><span class="o">[</span>GCC<span class="w"> </span><span class="m">8</span>.5.0<span class="w"> </span><span class="m">20210514</span><span class="w"> </span><span class="o">(</span>Red<span class="w"> </span>Hat<span class="w"> </span><span class="m">8</span>.5.0-22<span class="o">)]</span><span class="w"> </span>on<span class="w"> </span>linux
+Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class="w"> </span><span class="s2">&quot;copyright&quot;</span>,<span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;license&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+&gt;&gt;&gt;<span class="w"> </span>import<span class="w"> </span>torch
+&gt;&gt;&gt;<span class="w"> </span>torch.cuda.is_available<span class="o">()</span>
+False
+&gt;&gt;&gt;<span class="w"> </span>exit<span class="o">()</span>
+</pre></div>
+</div>
+<p>Virtual environment running on the compute node:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span><span class="w"> </span><span class="o">[</span>ir-shar8@gpu-q-17<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>python
+Python<span class="w"> </span><span class="m">3</span>.11.11<span class="w"> </span><span class="o">(</span>main,<span class="w"> </span>Dec<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">2024</span>,<span class="w"> </span><span class="m">16</span>:28:23<span class="o">)</span><span class="w"> </span><span class="o">[</span>GCC<span class="w"> </span><span class="m">8</span>.5.0<span class="w"> </span><span class="m">20210514</span><span class="w"> </span><span class="o">(</span>Red<span class="w"> </span>Hat<span class="w"> </span><span class="m">8</span>.5.0-22<span class="o">)]</span><span class="w"> </span>on<span class="w"> </span>linux
+Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class="w"> </span><span class="s2">&quot;copyright&quot;</span>,<span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;license&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+&gt;&gt;&gt;<span class="w"> </span>import<span class="w"> </span>torch
+&gt;&gt;&gt;<span class="w"> </span>torch.cuda.get_device_name<span class="o">(</span><span class="m">0</span><span class="o">)</span>
+<span class="s1">&#39;NVIDIA A100-SXM4-80GB&#39;</span>
+&gt;&gt;&gt;<span class="w"> </span>
+</pre></div>
+</div>
+<p>There is not “illegal instruction” error on either of the nodes.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -455,22 +495,13 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../Cumulus/1.%20Rules%20and%20jobs.html"
+       href="2.%20Rules%20and%20jobs.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Basic information and job submission</p>
+        <p class="prev-next-title">Basic information</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="1.%20Setup.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Setup</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -484,10 +515,22 @@
 
 
   <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-python-compiled-with-amd-cpu">Using python compiled with AMD CPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/CSD3/index.md">
+    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/CSD3/3. Using python.ipynb">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -503,7 +546,7 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/CSD3/index.md"
+      <li><a href="../_sources/CSD3/3. Using python.ipynb"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
