@@ -23,3 +23,5 @@ parts:
       sections:
       - file: CSD3/1. Setup.ipynb
       - file: CSD3/2. Rules and jobs.ipynb
+      - file: CSD3/3. Using python.ipynb
+      - file: CSD3/4. Transferring files.ipynb
