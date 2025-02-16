@@ -25,3 +25,4 @@ parts:
       - file: CSD3/2. Rules and jobs.ipynb
       - file: CSD3/3. Using python.ipynb
       - file: CSD3/4. Transferring files.ipynb
+      - file: CSD3/5. Remote VS code.ipynb
