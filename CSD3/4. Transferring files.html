@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CSD3 &#8212; My Jupyter Book</title>
+    <title>Transferring Files &#8212; My Jupyter Book</title>
   
   
   
@@ -59,11 +59,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'CSD3/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'CSD3/4. Transferring files';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Setup" href="1.%20Setup.html" />
-    <link rel="prev" title="Basic information and job submission" href="../Cumulus/1.%20Rules%20and%20jobs.html" />
+    <link rel="prev" title="Using python" href="3.%20Using%20python.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -165,7 +164,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="index.html">
     CSD3
   </a>
 </li>
@@ -291,7 +290,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="index.html">
     CSD3
   </a>
 </li>
@@ -346,14 +345,14 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1.%20Setup.html">Setup</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html">Basic information</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="3.%20Using%20python.html">Using python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4.%20Transferring%20files.html">Transferring Files</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Transferring Files</a></li>
 </ul>
 </div>
 </nav></div>
@@ -394,7 +393,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">CSD3</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">CSD3</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Transferring Files</span></li>
   </ul>
 </nav>
 </div>
@@ -411,20 +413,11 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="csd3">
-<h1>CSD3<a class="headerlink" href="#csd3" title="Link to this heading">#</a></h1>
-<p>Welcome to the CSD3 section. Choose a topic from the sidebar.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="1.%20Setup.html">Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1.%20Setup.html#multiplexing-ssh-connections">Multiplexing SSH connections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html">Basic information</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html#usage-credits">Usage credits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html#jobs">Jobs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3.%20Using%20python.html">Using python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4.%20Transferring%20files.html">Transferring Files</a></li>
-</ul>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="transferring-files">
+<h1>Transferring Files<a class="headerlink" href="#transferring-files" title="Link to this heading">#</a></h1>
+<p>So I was trying to transfer files and folders just like a normal GUI file browser. One of the easiest solution is to use GNOME virtual file system (GVFS). They inbuilt in Nautilus and Dolfin file browsers. However, they use a very bare bone OpenSSH which doesn’t support TOTP for some reason. I tried multiple thing but wasn’t able to get them working. Same happened with FIleZilla which does not use OpenSSH, its SFTP support is based on PuTTY’s psftp, also doesn’t work.</p>
+<p>Although, CSD3 does <a class="reference external" href="https://docs.hpc.cam.ac.uk/hpc/user-guide/transfer.html">mention</a> various tool to transfer files, but I wanted to use a GUI file browser. There are two solutions at this point. VS code’s remote ssh or a port forwarded Jupyter lab. VS Code is much easier to setup for file transfer. It also uses the master session so we don’t need to type thr TOTP.</p>
+<p>Once we are connected to CSD3, we can drag and drop files and folders to and from the remote server to another VS code running on local machine.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -457,22 +450,13 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../Cumulus/1.%20Rules%20and%20jobs.html"
+       href="3.%20Using%20python.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Basic information and job submission</p>
+        <p class="prev-next-title">Using python</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="1.%20Setup.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Setup</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -489,7 +473,7 @@
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/CSD3/index.md">
+    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/CSD3/4. Transferring files.ipynb">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -505,7 +489,7 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/CSD3/index.md"
+      <li><a href="../_sources/CSD3/4. Transferring files.ipynb"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
