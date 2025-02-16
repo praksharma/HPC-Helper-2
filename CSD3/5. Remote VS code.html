@@ -416,14 +416,14 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="remote-vs-code">
 <h1>Remote VS Code<a class="headerlink" href="#remote-vs-code" title="Link to this heading">#</a></h1>
-<p>A remote VS code enables us using an IDE inside a HPC cluster. The well know VS code remote extension is used to connect to the server. VS code should automatically use your master session if implemented or just ask you for a TOTP and install necessary the server side components. However there is a catch here. VS code will open on the login node which is good basic things, but if we manage to open it on a compute node we use the computer node for range of thing including debugging.</p>
-<p>To do this we implement a thing called proxy jump. I have used proxy jump in past to connect to my PhD desk PC via Sunbird which was publically accessible back in the days. The idea is hop from one node to another via the internet network.</p>
+<p>A remote VS code enables us using an IDE inside a HPC cluster. The well know VS code remote extension is used to connect to a server. VS code should automatically uses your master session, if implemented, or just ask you for a TOTP and installs the necessary server side components. However, there is a catch here. VS code will open on the login node which is good for basic things, but if we manage to open it on a compute node we use the computer node we can do a range of things including debugging.</p>
+<p>To do this, we implement a thing called proxy jump. I have used proxy jump in past to connect to my PhD desk PC via Sunbird which was publically accessible back in the days. The idea is hop from one node to another via the local network.</p>
 <p>The ssh commands allows us to do this. The command is as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-J<span class="w"> </span>user@jump_host<span class="w"> </span>user@destination_host
 </pre></div>
 </div>
 <p>Here the <code class="docutils literal notranslate"><span class="pre">jump_host</span></code> is the login node and <code class="docutils literal notranslate"><span class="pre">destination_host</span></code> is the compute node. The <code class="docutils literal notranslate"><span class="pre">-J</span></code> flag is used to specify the jump host.</p>
-<p>However there are better ways. But first we must have access to a computer node. We can get one by submitting an interactive job.</p>
+<p>However, there are better ways. But first we must have access to a computer node. We can get one by submitting an interactive job.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--account<span class="o">=</span>UKAEA-AP002-GPU<span class="w"> </span>--partition<span class="o">=</span>ampere<span class="w"> </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00:00<span class="w">  </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
 </pre></div>
 </div>
