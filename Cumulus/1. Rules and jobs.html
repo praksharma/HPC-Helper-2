@@ -417,7 +417,7 @@
 <li><p>Visio: Each node has 3 NVIDIA A40 48GB</p></li>
 </ul>
 <p>Currently, there is no timelimit, no QOS, no separate <code class="docutils literal notranslate"><span class="pre">scratch</span></code> or <code class="docutils literal notranslate"><span class="pre">work</span></code> partition even no user disk usage quota.</p>
-<p>One more thing the compute nodes are not connected to the internet. So things like <code class="docutils literal notranslate"><span class="pre">wandb</span></code> won’t work.</p>
+<p>One more thing the compute nodes are not connected to the internet. So things like <code class="docutils literal notranslate"><span class="pre">wandb</span></code> won’t work. Also, SSHing into an interactive session on a compute node is not allowed. I have no idea why.</p>
 <section id="python">
 <h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
 <p>Over the years I have learnt that the easiest way to run a python environment without messing with <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> or modules is to use miniconda. Click <a class="reference external" href="https://docs.anaconda.com/miniconda/install/">here</a> to see how to install miniconda on Linux.</p>
