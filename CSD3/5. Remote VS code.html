@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Remote VS Code &#8212; My Jupyter Book</title>
+    <title>Remote VS Code on Compute node &#8212; My Jupyter Book</title>
   
   
   
@@ -353,7 +353,7 @@
 
 <li class="toctree-l1"><a class="reference internal" href="3.%20Using%20python.html">Using python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4.%20Transferring%20files.html">Transferring Files</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Remote VS Code</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Remote VS Code on Compute node</a></li>
 </ul>
 </div>
 </nav></div>
@@ -397,7 +397,7 @@
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">CSD3</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Remote VS Code</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Remote VS Code on Compute node</span></li>
   </ul>
 </nav>
 </div>
@@ -414,10 +414,10 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="remote-vs-code">
-<h1>Remote VS Code<a class="headerlink" href="#remote-vs-code" title="Link to this heading">#</a></h1>
-<p>A remote VS code enables us using an IDE inside a HPC cluster. The well know VS code remote extension is used to connect to a server. VS code should automatically uses your master session, if implemented, or just ask you for a TOTP and installs the necessary server side components. However, there is a catch here. VS code will open on the login node which is good for basic things, but if we manage to open it on a compute node we use the computer node we can do a range of things including debugging.</p>
-<p>To do this, we implement a thing called proxy jump. I have used proxy jump in past to connect to my PhD desk PC via Sunbird which was publically accessible back in the days. The idea is hop from one node to another via the local network.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="remote-vs-code-on-compute-node">
+<h1>Remote VS Code on Compute node<a class="headerlink" href="#remote-vs-code-on-compute-node" title="Link to this heading">#</a></h1>
+<p>A remote VS code enables us using an IDE inside a HPC cluster. The well know VS code remote extension is used to connect to a server. VS code should automatically uses your master session, if implemented, or just ask you for a TOTP and installs the necessary server side components. However, there is a catch here. VS code will open on the login node which is good for basic things, but if we manage to open it on a compute node we use the compute node we can do a range of things including debugging and code running without job submission.</p>
+<p>To do this, we implement a thing called proxy jump. I have used proxy jump in past to connect to my PhD desk PC via Sunbird which was publically accessible back in the days. The idea is to hop from one node to another via the local network.</p>
 <p>The ssh commands allows us to do this. The command is as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-J<span class="w"> </span>user@jump_host<span class="w"> </span>user@destination_host
 </pre></div>
@@ -450,10 +450,14 @@
 <p class="admonition-title">Note</p>
 <p>We need to change the hostname in the <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> file to the compute node hostname everytime we submit a new job.</p>
 </div>
-<p>Now we can open VS code and connect to the compute node. Once you open the terminal you are already in the compute node with direct access to the GPU simialr to a  personal PC. If you want to activate a python environment this can be done in <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> of the HPC or can be done manually.</p>
+<p>Now we can open VS code and connect to the compute node. Once you open the terminal you are already in the compute node with direct access to the GPU similar to a  personal PC. If you want to activate a python environment this can be done in <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> of the HPC or can be done manually.</p>
 <section id="problem-jupyter-notebooks">
 <h2>Problem jupyter notebooks<a class="headerlink" href="#problem-jupyter-notebooks" title="Link to this heading">#</a></h2>
 <p>Unfortunately, I was not able to run jupyter notebook in the VS code running directly on computer node. I tried a lot of things. If I manage to get it working I will update this doc.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above method is working fine for me. I can directly run python scripts as well as jupyter notebook cells without any issues. Just need to install some relevant VS Code extensions on the compute node. Even Github Copilot is working fine. <a class="reference external" href="https://www.youtube.com/watch?v=0a4Ri4RK5wA">Here</a> is an example video.</p>
+</div>
 </section>
 </section>
 
