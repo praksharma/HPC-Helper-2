@@ -354,7 +354,7 @@
 
 <li class="toctree-l1"><a class="reference internal" href="3.%20Using%20python.html">Using python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4.%20Transferring%20files.html">Transferring Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5.%20Remote%20VS%20code.html">Remote VS Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.%20Remote%20VS%20code.html">Remote VS Code on Compute node</a></li>
 </ul>
 </div>
 </nav></div>
@@ -418,6 +418,18 @@
   <section class="tex2jax_ignore mathjax_ignore" id="basic-information">
 <h1>Basic information<a class="headerlink" href="#basic-information" title="Link to this heading">#</a></h1>
 <p>CSD3 runs on Rocky Linux, which is based on RedHat CentOS with a very old Linux kernel. CSD3 has multiple generations of Xeon processors such as Cascade Lake, Ice Lake and Sapphire Rapids.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>24th March 2025 onwards, you will need to update the queue names in your submission scripts as described below.</p>
+<ul class="simple">
+<li><p>icelake -&gt; ukaea-icl</p></li>
+<li><p>icelake-himem -&gt; ukaea-icl-himem</p></li>
+<li><p>sapphire -&gt; ukaea-spr</p></li>
+<li><p>ampere -&gt; ukaea-amp</p></li>
+<li><p>sapphire-hbm -&gt; ukaea-spr-hbm</p></li>
+<li><p>sapphire-hbm-flat -&gt; ukaea-spr-hbm-flat</p></li>
+</ul>
+</div>
 <section id="login-nodes">
 <h2>Login nodes<a class="headerlink" href="#login-nodes" title="Link to this heading">#</a></h2>
 <p>The are multiple login nodes for load balancing. There are 4 Icelake generation login nodes from <code class="docutils literal notranslate"><span class="pre">login-q-1</span></code> to <code class="docutils literal notranslate"><span class="pre">login-q-4</span></code> and 4 CascadeLake generation login nodes from <code class="docutils literal notranslate"><span class="pre">login-p-1</span></code> to <code class="docutils literal notranslate"><span class="pre">login-p-4</span></code>.</p>
@@ -455,6 +467,10 @@ ir-shar8<span class="w">           </span><span class="m">0</span><span class="w
 <section id="interactive-jobs">
 <h2>Interactive jobs<a class="headerlink" href="#interactive-jobs" title="Link to this heading">#</a></h2>
 <p>Here is a basic template for an interactive job:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>24th March 2025 onwards, the <code class="docutils literal notranslate"><span class="pre">ampere</span></code> partition will be replaced by <code class="docutils literal notranslate"><span class="pre">ukaea-amp</span></code> partition.</p>
+</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--account<span class="o">=</span>UKAEA-AP002-GPU<span class="w"> </span>--partition<span class="o">=</span>ampere<span class="w"> </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00:00<span class="w">  </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
 </pre></div>
 </div>
