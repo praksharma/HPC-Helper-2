@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Setup &#8212; My Jupyter Book</title>
+    <title>SSH access restriction on compute nodes &#8212; My Jupyter Book</title>
   
   
   
@@ -59,11 +59,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'CSD3/1. Setup';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Cumulus/2. port forwarding';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic information" href="2.%20Rules%20and%20jobs.html" />
-    <link rel="prev" title="CSD3" href="index.html" />
+    <link rel="next" title="CSD3" href="../CSD3/index.html" />
+    <link rel="prev" title="Basic information and job submission" href="1.%20Rules%20and%20jobs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -157,15 +157,15 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../Cumulus/index.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
     Cumulus
   </a>
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="index.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../CSD3/index.html">
     CSD3
   </a>
 </li>
@@ -283,15 +283,15 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../Cumulus/index.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
     Cumulus
   </a>
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="index.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../CSD3/index.html">
     CSD3
   </a>
 </li>
@@ -347,14 +347,8 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html">Basic information</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="3.%20Using%20python.html">Using python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4.%20Transferring%20files.html">Transferring Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5.%20Remote%20VS%20code.html">Remote VS Code on Compute node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.%20Rules%20and%20jobs.html">Basic information and job submission</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">SSH access restriction on compute nodes</a></li>
 </ul>
 </div>
 </nav></div>
@@ -396,9 +390,9 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="index.html" class="nav-link">CSD3</a></li>
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Cumulus</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Setup</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">SSH access restriction on compute nodes</span></li>
   </ul>
 </nav>
 </div>
@@ -415,46 +409,27 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="setup">
-<h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h1>
-<p>The Cambridge Service for Data Driven Discovery (CSD3) has a nice <a class="reference external" href="https://docs.hpc.cam.ac.uk/hpc/index.html">documentation</a>. To access the cluster, you need to have an account. Now there are two SAFE different SAFE accounts.</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://safe.epcc.ed.ac.uk/">https://safe.epcc.ed.ac.uk/</a> : For ARCHER2 registration</p></li>
-<li><p><a class="reference external" href="https://safe.epcc.ed.ac.uk/dirac/">https://safe.epcc.ed.ac.uk/dirac/</a> : For CSD3 registration</p></li>
-</ul>
-<p>In my case I already had a SAFE account for ARCHER2, so I used the same account to access CSD3. Just need to click on <code class="docutils literal notranslate"><span class="pre">safe</span> <span class="pre">sign</span> <span class="pre">in</span></code> button and use SAFE ARCHER2 credentials.</p>
-<p><img alt="image.png" src="../_images/login.png" /></p>
-<section id="totp-generation">
-<h2>TOTP generation<a class="headerlink" href="#totp-generation" title="Link to this heading">#</a></h2>
-<p>Unlike other HPC clusters, CSD3 doesn’t involve any password. You have to upload at least one public key to SAFE DIRAC account. Once that is done, you can generate a TOTP token through a special node: <code class="docutils literal notranslate"><span class="pre">multi.hpc.cam.ac.uk</span></code>.</p>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="multiplexing-ssh-connections">
-<h1>Multiplexing SSH connections<a class="headerlink" href="#multiplexing-ssh-connections" title="Link to this heading">#</a></h1>
-<p>One of the problems with CSD3 is that you have to use the TOTP token every single time you login to CSD3. One way to avoid is use by multiplexing ssh connections. The first login will open a master connection and all subsequent connections will use the master connection. This way you only need to enter the TOTP token once, until the master connection is dies or closed.</p>
-<p>We need to add the following lines to the <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> file.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Host<span class="w"> 	</span>CSD3
-<span class="w">    	</span>User<span class="w">	</span>ir-shar8
-<span class="w">    	</span>HostName<span class="w">	</span>login.hpc.cam.ac.uk
-<span class="w">    	</span>ControlMaster<span class="w">	</span>auto
-<span class="w">    	</span>ControlPath<span class="w">	</span>~/.ssh/control-%C
-<span class="w">    	</span>ControlPersist<span class="w">	</span><span class="m">3600</span>
-<span class="w">    	</span>ServerAliveInterval<span class="w">	</span><span class="m">60</span>
-<span class="w">    	</span>ServerAliveCountMax<span class="w">	</span><span class="m">5</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="ssh-access-restriction-on-compute-nodes">
+<h1>SSH access restriction on compute nodes<a class="headerlink" href="#ssh-access-restriction-on-compute-nodes" title="Link to this heading">#</a></h1>
+<p>Cumulus has restricted SSH access to compute nodes. If you go to any compute node by running an interactive job, say <code class="docutils literal notranslate"><span class="pre">vis002</span></code>, you can see the output of the <code class="docutils literal notranslate"><span class="pre">/etc/security/access.conf</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span><span class="w"> </span><span class="o">[</span>zw5893@vis002<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">&#39;^#&#39;</span><span class="w"> </span>/etc/security/access.conf
++:root:ALL
++:<span class="o">(</span>cumulus_admin<span class="o">)</span>:ALL
++:<span class="o">(</span>cumulus_admin-memb<span class="o">)</span>:ALL
+-:ALL:ALL
 </pre></div>
 </div>
-<p>Here,</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ControlMaster</span> <span class="pre">auto</span></code> : This will open a master connection.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ControlPath</span> <span class="pre">~/.ssh/control-%C</span></code> : This will store the master connection in the <code class="docutils literal notranslate"><span class="pre">~/.ssh/</span></code> directory. <code class="docutils literal notranslate"><span class="pre">%C</span></code> ensures a unique filename based on host/user/port to avoid conflicts.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ControlPersist</span> <span class="pre">3600</span></code> : This will keep the master connection alive for 3600 seconds or 1 hour.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ServerAliveInterval</span> <span class="pre">60</span></code> : Sends a keep-alive packet every 60 seconds to prevent idle disconnects.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ServerAliveCountMax</span> <span class="pre">5</span></code> : SSH will retry sending 5 keep-alive packets before considering the connection dead.</p></li>
-</ul>
-<p>Now the first connection will ask for the TOTP token. All subsequent connections will use the master connection for the next one hour. We can actually check the master connection by running the following command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-l<span class="w"> </span>~/.ssh/control-*
+<p>It means only <code class="docutils literal notranslate"><span class="pre">cumulus_admin</span></code> and <code class="docutils literal notranslate"><span class="pre">cumulus_admin-memb</span></code> can use SSH, and <code class="docutils literal notranslate"><span class="pre">-:ALL:ALL</span></code> blocks the remaining users.</p>
+<p>So, if you try to login to <code class="docutils literal notranslate"><span class="pre">vis002</span></code> from a new terminal window, you will get the following error:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span><span class="w"> </span><span class="o">[</span>zw5893@login1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span>
+<span class="w">             </span>JOBID<span class="w"> </span>PARTITION<span class="w">     </span>NAME<span class="w">     </span>USER<span class="w"> </span>ST<span class="w">       </span>TIME<span class="w">  </span>NODES<span class="w"> </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+<span class="w">            </span><span class="m">159721</span><span class="w">     </span>visio<span class="w">     </span>bash<span class="w">   </span>zw5893<span class="w">  </span>R<span class="w">      </span><span class="m">23</span>:53<span class="w">      </span><span class="m">1</span><span class="w"> </span>vis002
+
+<span class="o">(</span>base<span class="o">)</span><span class="w"> </span><span class="o">[</span>zw5893@login1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ssh<span class="w"> </span>vis002
+Connection<span class="w"> </span>closed<span class="w"> </span>by<span class="w"> </span><span class="m">172</span>.23.0.88<span class="w"> </span>port<span class="w"> </span><span class="m">22</span>
 </pre></div>
 </div>
+<p>Since SSH is restricted, this also prevents port forwarding of services like Jupyter, WandB, VS Code server etc. from the compute node to a personal PC.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -470,7 +445,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./CSD3"
+            path: "./Cumulus"
         },
         predefinedOutput: true
     }
@@ -487,20 +462,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="1.%20Rules%20and%20jobs.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">CSD3</p>
+        <p class="prev-next-title">Basic information and job submission</p>
       </div>
     </a>
     <a class="right-next"
-       href="2.%20Rules%20and%20jobs.html"
+       href="../CSD3/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic information</p>
+        <p class="prev-next-title">CSD3</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -516,25 +491,10 @@
 
 
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> 
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Setup</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#totp-generation">TOTP generation</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplexing-ssh-connections">Multiplexing SSH connections</a></li>
-</ul>
-
-  </nav></div>
-
-  <div class="sidebar-secondary-item">
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/CSD3/1. Setup.ipynb">
+    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/Cumulus/2. port forwarding.ipynb">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -550,7 +510,7 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/CSD3/1. Setup.ipynb"
+      <li><a href="../_sources/Cumulus/2. port forwarding.ipynb"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
