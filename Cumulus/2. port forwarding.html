@@ -430,6 +430,10 @@ Connection<span class="w"> </span>closed<span class="w"> </span>by<span class="w
 </pre></div>
 </div>
 <p>Since SSH is restricted, this also prevents port forwarding of services like Jupyter, WandB, VS Code server etc. from the compute node to a personal PC.</p>
+<p>In most HPC systems, SSH access is allowed to compute nodes. The people who maintain the system said</p>
+<blockquote>
+<div><p>This is quite deliberate.  If you need interactive access to the node you can use <code class="docutils literal notranslate"><span class="pre">srun</span></code>.  If you feel you really need this then please put in a ticket justifying the reason and we will discuss it within the HPC governance group and with the security team.</p>
+</div></blockquote>
 </section>
 
     <script type="text/x-thebe-config">
