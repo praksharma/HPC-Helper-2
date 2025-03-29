@@ -17,6 +17,7 @@ parts:
     - file: Cumulus/index.md
       sections:
       - file: Cumulus/1. Rules and jobs.ipynb
+      - file: Cumulus/2. port forwarding.ipynb
   - caption: CSD3
     chapters:
     - file: CSD3/index.md
