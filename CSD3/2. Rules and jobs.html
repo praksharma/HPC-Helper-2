@@ -519,6 +519,21 @@ nvidia-smi<span class="w"> </span>&gt;&gt;<span class="w"> </span>output.txt
 </pre></div>
 </div>
 </section>
+<section id="interactive-job-commands">
+<h2>Interactive job commands<a class="headerlink" href="#interactive-job-commands" title="Link to this heading">#</a></h2>
+<section id="gpu">
+<h3>GPU<a class="headerlink" href="#gpu" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--account<span class="o">=</span>UKAEA-AP002-GPU<span class="w"> </span>--partition<span class="o">=</span>ukaea-spr<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w">  </span>--time<span class="o">=</span><span class="m">03</span>:30:00<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+</pre></div>
+</div>
+</section>
+<section id="cpu">
+<h3>CPU<a class="headerlink" href="#cpu" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--account<span class="o">=</span>UKAEA-AP002-CPU<span class="w"> </span>--partition<span class="o">=</span>ukaea-icl<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w">  </span>--time<span class="o">=</span><span class="m">03</span>:30:00<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -596,6 +611,11 @@ nvidia-smi<span class="w"> </span>&gt;&gt;<span class="w"> </span>output.txt
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs">Jobs</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-jobs">Interactive jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-jobs">Batch jobs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-job-commands">Interactive job commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu">GPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">CPU</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
