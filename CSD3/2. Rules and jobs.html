@@ -352,6 +352,7 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic information</a></li>
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="3.%20Using%20python.html">Using python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4.%20Transferring%20files.html">Transferring Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5.%20Remote%20VS%20code.html">Remote VS Code on Compute node</a></li>
@@ -535,6 +536,18 @@ nvidia-smi<span class="w"> </span>&gt;&gt;<span class="w"> </span>output.txt
 </section>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="file-quota">
+<h1>File Quota<a class="headerlink" href="#file-quota" title="Link to this heading">#</a></h1>
+<p>HPC cluster often has a file quota system in place to limit the amount of disk space that users can consume. On CSD3, one can check the current quota with the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span><span class="w"> </span><span class="o">[</span>ir-shar8@login-p-3<span class="w"> </span>ir-shar8<span class="o">]</span>$<span class="w"> </span>quota
+Filesystem/Project<span class="w">    </span>GB<span class="w">        </span>quota<span class="w">     </span>limit<span class="w">          </span>grace<span class="w">           </span>files<span class="w">    </span>quota<span class="w">    </span>limit<span class="w">   </span>grace<span class="w"> </span>User/Grp/Proj<span class="w">                                                   </span>
+/home<span class="w">                 </span><span class="m">27</span>.6<span class="w">       </span><span class="m">50</span>.0<span class="w">      </span><span class="m">55</span>.0<span class="w">                     </span>-<span class="w">    </span>-------<span class="w"> </span>No<span class="w"> </span>File<span class="w"> </span>Quotas<span class="w">  </span>-------<span class="w"> </span>U:ir-shar8<span class="w">                                                      </span>
+/rds-d2<span class="w">                </span><span class="m">0</span>.0<span class="w">        </span><span class="m">0</span>.0<span class="w">       </span><span class="m">0</span>.0<span class="w">                     </span>-<span class="w">        </span><span class="m">1</span><span class="w">        </span><span class="m">0</span><span class="w">        </span><span class="m">0</span><span class="w">       </span>-<span class="w"> </span>G:rds<span class="w">                                                           </span>
+/rds-d5<span class="w">                </span><span class="m">0</span>.0<span class="w">        </span><span class="m">0</span>.0<span class="w">       </span><span class="m">0</span>.0<span class="w">                     </span>-<span class="w">        </span><span class="m">4</span><span class="w">        </span><span class="m">0</span><span class="w">        </span><span class="m">0</span><span class="w">       </span>-<span class="w"> </span>G:ukaea-ap002<span class="w">                                                   </span>
+rds-mOlK9qn0PlQ<span class="w">   </span><span class="m">220643</span>.5<span class="w">   </span><span class="m">300000</span>.0<span class="w">  </span><span class="m">300000</span>.0<span class="w">                     </span>-<span class="w"> </span><span class="m">70815169</span><span class="w"> </span><span class="m">153600000</span><span class="w"> </span><span class="m">153600000</span><span class="w">       </span>-<span class="w"> </span>P:90590
+</pre></div>
+</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -618,6 +631,7 @@ nvidia-smi<span class="w"> </span>&gt;&gt;<span class="w"> </span>output.txt
 </li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#file-quota">File Quota</a></li>
 </ul>
 
   </nav></div>

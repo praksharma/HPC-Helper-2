@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Using python &#8212; My Jupyter Book</title>
+    <title>Tmux &#8212; My Jupyter Book</title>
   
   
   
@@ -59,11 +59,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'CSD3/3. Using python';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Common/6. Tmux';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Transferring Files" href="4.%20Transferring%20files.html" />
-    <link rel="prev" title="Basic information" href="2.%20Rules%20and%20jobs.html" />
+    <link rel="next" title="Cumulus" href="../Cumulus/index.html" />
+    <link rel="prev" title="Folder size" href="5.%20Folder%20size.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -150,8 +150,8 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../Common/index.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
     Common
   </a>
 </li>
@@ -164,8 +164,8 @@
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="index.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../CSD3/index.html">
     CSD3
   </a>
 </li>
@@ -276,8 +276,8 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../Common/index.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
     Common
   </a>
 </li>
@@ -290,8 +290,8 @@
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="index.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../CSD3/index.html">
     CSD3
   </a>
 </li>
@@ -347,15 +347,12 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="1.%20Setup.html">Setup</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="2.%20Rules%20and%20jobs.html">Basic information</a></li>
-
-
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Using python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4.%20Transferring%20files.html">Transferring Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5.%20Remote%20VS%20code.html">Remote VS Code on Compute node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.%20SSH%20key.html">Copy SSH public key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.%20LLM-on-slurm.html">Running Ollama and Open WebUI on HPC with Apptainer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.%20using%20modern%20terminal.html">Using Modern terminal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.%20TOTP%20management.html">TOTP/ MFA management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.%20Folder%20size.html">Folder size</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tmux</a></li>
 </ul>
 </div>
 </nav></div>
@@ -397,9 +394,9 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="index.html" class="nav-link">CSD3</a></li>
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Common</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Using python</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Tmux</span></li>
   </ul>
 </nav>
 </div>
@@ -416,60 +413,30 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="using-python">
-<h1>Using python<a class="headerlink" href="#using-python" title="Link to this heading">#</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Update (6th March 2025): None of the following information is true. The python environment should work as long as the python version is compiled with x86-64 instruction set. However, some compute nodes still throws “Illegal instruction” error. I have to still uncover the reason behind it.</p>
-</div>
-<p>I never thought that using python on a HPC cluster might be a problem, and I will ever need to document it. CSD3 contains partitions with multiple CPUs brands. The Ampere GPU nodes runs of a AMD CPU and the login nodes run on Intel CPU. So, python compiled for a Intel CPUs will not work on AMD CPUs because of Intel-specific instructions (like AVX-512) don’t exist on AMD EPYC. So, if you created a virtual environment on the login node and tried to run it on the compute node, it will not work and give you the following error:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span><span class="w"> </span><span class="o">[</span>ir-shar8@gpu-q-8<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>python
-Illegal<span class="w"> </span>instruction
+  <section class="tex2jax_ignore mathjax_ignore" id="tmux">
+<h1>Tmux<a class="headerlink" href="#tmux" title="Link to this heading">#</a></h1>
+<p>Tmux is a terminal multiplexer that allows you to manage multiple terminal sessions from a single window. It is especially useful for remote work, as it allows you to keep sessions alive even if your connection drops.</p>
+<p>I always use a minimal Tmux sessions which aligns with my muscle memory from using Kitty terminal.</p>
+<p>Here is my minimal Tmux configuration:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span><span class="w"> </span><span class="o">[</span>ir-shar8@login-p-3<span class="w"> </span>ir-shar8<span class="o">]</span>$<span class="w"> </span>cat<span class="w"> </span>~/.tmux.conf
+<span class="c1"># Unbind the default prefix</span>
+unbind<span class="w"> </span>C-b
+
+<span class="c1"># Bind Ctrl+W to create a new window</span>
+<span class="nb">bind</span><span class="w"> </span>-n<span class="w"> </span>C-w<span class="w"> </span>new-window
+
+<span class="c1"># Navigate with Ctrl+Left and Ctrl+Right</span>
+<span class="nb">bind</span><span class="w"> </span>-n<span class="w"> </span>C-Left<span class="w"> </span>previous-window
+<span class="nb">bind</span><span class="w"> </span>-n<span class="w"> </span>C-Right<span class="w"> </span>next-window
+<span class="c1"># Enable Mouse scrolling</span>
+<span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>mouse<span class="w"> </span>on
 </pre></div>
 </div>
-<p>However, Dr. Lisa made sure that AMD CPUs are fully compatible with Intel’s x86-64 instruction set. That is why when the virtual environment is created on the compute node, it will work on the login node. To check the CPU brand, you can use the following command:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;model name&quot;</span>
-</pre></div>
-</div>
-<section id="using-python-compiled-with-amd-cpu">
-<h2>Using python compiled with AMD CPU<a class="headerlink" href="#using-python-compiled-with-amd-cpu" title="Link to this heading">#</a></h2>
-<p>CSD3 has bare-metal python, virtualenv, anaconda and miniconda installed as modules. But, all of them are very old and won’t work with the NVIDIA driver 550 compiled against CUDA 12.4. Sure one can just download miniconda from internet, but if you lazy like me, just use the following module.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>python/3.11.0-icl<span class="w"> </span>
-</pre></div>
-</div>
-<p>This is only new python version which is compatible with the NVIDIA driver we have on ampere partitions. Remember to create a virtual environment on the compute node not on the login node. The compute nodes have internet access, so you can download the packages you need.</p>
-</section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Python compiled on AMD = Universally compatible.</p></li>
-<li><p>Python compiled on Intel = Not always AMD-compatible (because of AVX-512).</p></li>
-</ul>
-</section>
-<section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
-<p>Virtual environment running on the login node:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>ir-shar8@login-p-1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-<span class="o">(</span>.venv<span class="o">)</span><span class="w"> </span><span class="o">[</span>ir-shar8@login-p-1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>python
-Python<span class="w"> </span><span class="m">3</span>.11.11<span class="w"> </span><span class="o">(</span>main,<span class="w"> </span>Dec<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">2024</span>,<span class="w"> </span><span class="m">16</span>:28:23<span class="o">)</span><span class="w"> </span><span class="o">[</span>GCC<span class="w"> </span><span class="m">8</span>.5.0<span class="w"> </span><span class="m">20210514</span><span class="w"> </span><span class="o">(</span>Red<span class="w"> </span>Hat<span class="w"> </span><span class="m">8</span>.5.0-22<span class="o">)]</span><span class="w"> </span>on<span class="w"> </span>linux
-Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class="w"> </span><span class="s2">&quot;copyright&quot;</span>,<span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;license&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
-&gt;&gt;&gt;<span class="w"> </span>import<span class="w"> </span>torch
-&gt;&gt;&gt;<span class="w"> </span>torch.cuda.is_available<span class="o">()</span>
-False
-&gt;&gt;&gt;<span class="w"> </span>exit<span class="o">()</span>
-</pre></div>
-</div>
-<p>Virtual environment running on the compute node:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span><span class="w"> </span><span class="o">[</span>ir-shar8@gpu-q-17<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>python
-Python<span class="w"> </span><span class="m">3</span>.11.11<span class="w"> </span><span class="o">(</span>main,<span class="w"> </span>Dec<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">2024</span>,<span class="w"> </span><span class="m">16</span>:28:23<span class="o">)</span><span class="w"> </span><span class="o">[</span>GCC<span class="w"> </span><span class="m">8</span>.5.0<span class="w"> </span><span class="m">20210514</span><span class="w"> </span><span class="o">(</span>Red<span class="w"> </span>Hat<span class="w"> </span><span class="m">8</span>.5.0-22<span class="o">)]</span><span class="w"> </span>on<span class="w"> </span>linux
-Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class="w"> </span><span class="s2">&quot;copyright&quot;</span>,<span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;license&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
-&gt;&gt;&gt;<span class="w"> </span>import<span class="w"> </span>torch
-&gt;&gt;&gt;<span class="w"> </span>torch.cuda.get_device_name<span class="o">(</span><span class="m">0</span><span class="o">)</span>
-<span class="s1">&#39;NVIDIA A100-SXM4-80GB&#39;</span>
-&gt;&gt;&gt;<span class="w"> </span>
-</pre></div>
-</div>
-<p>There is not “illegal instruction” error on either of the nodes.</p>
+<p>Here, I am using Ctrl+W to create a new window, my Kitty terminal shortcut is Ctrl+T, so I had to choose something else. We can switch to the next and previous windows using Ctrl+Left and Ctrl+Right. I also enabled mouse scrolling for convenience.</p>
+<section id="tmux-select-text">
+<h2>Tmux select text<a class="headerlink" href="#tmux-select-text" title="Link to this heading">#</a></h2>
+<p>Tmux uses vim like keybindings for selecting text and I don’t like it. Instead we can use the mouse to select text. Normal mouse selection doesn’t work, instead we can hold <code class="docutils literal notranslate"><span class="pre">SHIFT</span></code> key to bypass tmux and give raw mouse control to terminal. To unselect text, just press <code class="docutils literal notranslate"><span class="pre">SHIFT</span></code> key again and click anywhere in the tmux.</p>
+<p><img alt="Tmux select text" src="../_images/tmux.png" /></p>
 </section>
 </section>
 
@@ -486,7 +453,7 @@ Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class
         },
         kernelOptions: {
             name: "python3",
-            path: "./CSD3"
+            path: "./Common"
         },
         predefinedOutput: true
     }
@@ -503,20 +470,20 @@ Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="2.%20Rules%20and%20jobs.html"
+       href="5.%20Folder%20size.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Basic information</p>
+        <p class="prev-next-title">Folder size</p>
       </div>
     </a>
     <a class="right-next"
-       href="4.%20Transferring%20files.html"
+       href="../Cumulus/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Transferring Files</p>
+        <p class="prev-next-title">Cumulus</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -537,9 +504,7 @@ Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-python-compiled-with-amd-cpu">Using python compiled with AMD CPU</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tmux-select-text">Tmux select text</a></li>
 </ul>
   </nav></div>
 
@@ -547,7 +512,7 @@ Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/CSD3/3. Using python.ipynb">
+    <a href="https://github.com/praksharma/HPC-Helper-2/edit/main/docs/Common/6. Tmux.ipynb">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -563,7 +528,7 @@ Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/CSD3/3. Using python.ipynb"
+      <li><a href="../_sources/Common/6. Tmux.ipynb"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
