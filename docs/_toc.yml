@@ -12,6 +12,8 @@ parts:
       - file: Common/2. LLM-on-slurm.ipynb
       - file: Common/3. using modern terminal.ipynb
       - file: Common/4. TOTP management.ipynb
+      - file: Common/5. Folder size.ipynb
+      - file: Common/6. Tmux.ipynb
   - caption: Cumulus
     chapters:
     - file: Cumulus/index.md
@@ -24,6 +26,7 @@ parts:
       sections:
       - file: CSD3/1. Setup.ipynb
       - file: CSD3/2. Rules and jobs.ipynb
+
       - file: CSD3/3. Using python.ipynb
       - file: CSD3/4. Transferring files.ipynb
       - file: CSD3/5. Remote VS code.ipynb
