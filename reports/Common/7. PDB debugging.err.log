@@ -1,0 +1,142 @@
+Traceback (most recent call last):
+  File "/home/hell/Desktop/repos/HPC-Helper-2/.venv/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/hell/Desktop/repos/HPC-Helper-2/.venv/lib/python3.12/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hell/Desktop/repos/HPC-Helper-2/.venv/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hell/anaconda3/lib/python3.12/asyncio/base_events.py", line 685, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/hell/Desktop/repos/HPC-Helper-2/.venv/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/hell/Desktop/repos/HPC-Helper-2/.venv/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/hell/Desktop/repos/HPC-Helper-2/.venv/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pdb
+
+def buggy_function(x):
+    y = x * 2
+    z = y + 5
+    pdb.set_trace()  # Breakpoint here
+    result = z / (x - 3)  # Will crash if x == 3
+    return result
+
+def main():
+    for val in [1, 2, 3, 4]:
+        print(f"Input: {val}")
+        output = buggy_function(val)
+        print(f"Output: {output}")
+
+if __name__ == "__main__":
+    main()
+------------------
+
+----- stdout -----
+Input: 1
+> [0;32m/tmp/ipykernel_2201171/3137298266.py[0m(7)[0;36mbuggy_function[0;34m()[0m
+[0;32m      5 [0;31m    [0mz[0m [0;34m=[0m [0my[0m [0;34m+[0m [0;36m5[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      6 [0;31m    [0mpdb[0m[0;34m.[0m[0mset_trace[0m[0;34m([0m[0;34m)[0m  [0;31m# Breakpoint here[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m----> 7 [0;31m    [0mresult[0m [0;34m=[0m [0mz[0m [0;34m/[0m [0;34m([0m[0mx[0m [0;34m-[0m [0;36m3[0m[0;34m)[0m  [0;31m# Will crash if x == 3[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      8 [0;31m    [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      9 [0;31m[0;34m[0m[0m
+[0m
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
+Cell [0;32mIn[2], line 17[0m
+[1;32m     14[0m         [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mOutput: [39m[38;5;132;01m{[39;00moutput[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[1;32m     16[0m [38;5;28;01mif[39;00m [38;5;18m__name__[39m [38;5;241m==[39m [38;5;124m"[39m[38;5;124m__main__[39m[38;5;124m"[39m:
+[0;32m---> 17[0m     [43mmain[49m[43m([49m[43m)[49m
+
+Cell [0;32mIn[2], line 13[0m, in [0;36mmain[0;34m()[0m
+[1;32m     11[0m [38;5;28;01mfor[39;00m val [38;5;129;01min[39;00m [[38;5;241m1[39m, [38;5;241m2[39m, [38;5;241m3[39m, [38;5;241m4[39m]:
+[1;32m     12[0m     [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mInput: [39m[38;5;132;01m{[39;00mval[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[0;32m---> 13[0m     output [38;5;241m=[39m [43mbuggy_function[49m[43m([49m[43mval[49m[43m)[49m
+[1;32m     14[0m     [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mOutput: [39m[38;5;132;01m{[39;00moutput[38;5;132;01m}[39;00m[38;5;124m"[39m)
+
+Cell [0;32mIn[2], line 7[0m, in [0;36mbuggy_function[0;34m(x)[0m
+[1;32m      5[0m z [38;5;241m=[39m y [38;5;241m+[39m [38;5;241m5[39m
+[1;32m      6[0m pdb[38;5;241m.[39mset_trace()  [38;5;66;03m# Breakpoint here[39;00m
+[0;32m----> 7[0m result [38;5;241m=[39m [43mz[49m [38;5;241m/[39m (x [38;5;241m-[39m [38;5;241m3[39m)  [38;5;66;03m# Will crash if x == 3[39;00m
+[1;32m      8[0m [38;5;28;01mreturn[39;00m result
+
+File [0;32m~/anaconda3/lib/python3.12/bdb.py:90[0m, in [0;36mBdb.trace_dispatch[0;34m(self, frame, event, arg)[0m
+[1;32m     88[0m     [38;5;28;01mreturn[39;00m [38;5;66;03m# None[39;00m
+[1;32m     89[0m [38;5;28;01mif[39;00m event [38;5;241m==[39m [38;5;124m'[39m[38;5;124mline[39m[38;5;124m'[39m:
+[0;32m---> 90[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdispatch_line[49m[43m([49m[43mframe[49m[43m)[49m
+[1;32m     91[0m [38;5;28;01mif[39;00m event [38;5;241m==[39m [38;5;124m'[39m[38;5;124mcall[39m[38;5;124m'[39m:
+[1;32m     92[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mdispatch_call(frame, arg)
+
+File [0;32m~/anaconda3/lib/python3.12/bdb.py:114[0m, in [0;36mBdb.dispatch_line[0;34m(self, frame)[0m
+[1;32m    107[0m [38;5;250m[39m[38;5;124;03m"""Invoke user function and return trace function for line event.[39;00m
+[1;32m    108[0m 
+[1;32m    109[0m [38;5;124;03mIf the debugger stops on the current line, invoke[39;00m
+[1;32m    110[0m [38;5;124;03mself.user_line(). Raise BdbQuit if self.quitting is set.[39;00m
+[1;32m    111[0m [38;5;124;03mReturn self.trace_dispatch to continue tracing in this scope.[39;00m
+[1;32m    112[0m [38;5;124;03m"""[39;00m
+[1;32m    113[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mstop_here(frame) [38;5;129;01mor[39;00m [38;5;28mself[39m[38;5;241m.[39mbreak_here(frame):
+[0;32m--> 114[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43muser_line[49m[43m([49m[43mframe[49m[43m)[49m
+[1;32m    115[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mquitting: [38;5;28;01mraise[39;00m BdbQuit
+[1;32m    116[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mtrace_dispatch
+
+File [0;32m~/anaconda3/lib/python3.12/pdb.py:341[0m, in [0;36mPdb.user_line[0;34m(self, frame)[0m
+[1;32m    339[0m     [38;5;28mself[39m[38;5;241m.[39m_wait_for_mainpyfile [38;5;241m=[39m [38;5;28;01mFalse[39;00m
+[1;32m    340[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mbp_commands(frame):
+[0;32m--> 341[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43minteraction[49m[43m([49m[43mframe[49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m
+
+File [0;32m~/Desktop/repos/HPC-Helper-2/.venv/lib/python3.12/site-packages/IPython/core/debugger.py:464[0m, in [0;36mPdb.interaction[0;34m(self, frame, tb_or_exc)[0m
+[1;32m    462[0m         [38;5;28;01massert[39;00m tb [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m, [38;5;124m"[39m[38;5;124mmain exception must have a traceback[39m[38;5;124m"[39m
+[1;32m    463[0m     [38;5;28;01mwith[39;00m [38;5;28mself[39m[38;5;241m.[39m_hold_exceptions(_chained_exceptions):
+[0;32m--> 464[0m         [43mOldPdb[49m[38;5;241;43m.[39;49m[43minteraction[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mframe[49m[43m,[49m[43m [49m[43mtb[49m[43m)[49m
+[1;32m    465[0m [38;5;28;01melse[39;00m:
+[1;32m    466[0m     OldPdb[38;5;241m.[39minteraction([38;5;28mself[39m, frame, tb_or_exc)
+
+File [0;32m~/anaconda3/lib/python3.12/pdb.py:439[0m, in [0;36mPdb.interaction[0;34m(self, frame, traceback)[0m
+[1;32m    437[0m     [38;5;28;01mreturn[39;00m
+[1;32m    438[0m [38;5;28mself[39m[38;5;241m.[39mprint_stack_entry([38;5;28mself[39m[38;5;241m.[39mstack[[38;5;28mself[39m[38;5;241m.[39mcurindex])
+[0;32m--> 439[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_cmdloop[49m[43m([49m[43m)[49m
+[1;32m    440[0m [38;5;28mself[39m[38;5;241m.[39mforget()
+
+File [0;32m~/Desktop/repos/HPC-Helper-2/.venv/lib/python3.12/site-packages/IPython/core/debugger.py:1119[0m, in [0;36mInterruptiblePdb._cmdloop[0;34m(self)[0m
+[1;32m   1115[0m [38;5;28;01mtry[39;00m:
+[1;32m   1116[0m     [38;5;66;03m# keyboard interrupts allow for an easy way to cancel[39;00m
+[1;32m   1117[0m     [38;5;66;03m# the current command, so allow them during interactive input[39;00m
+[1;32m   1118[0m     [38;5;28mself[39m[38;5;241m.[39mallow_kbdint [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+[0;32m-> 1119[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcmdloop[49m[43m([49m[43m)[49m
+[1;32m   1120[0m     [38;5;28mself[39m[38;5;241m.[39mallow_kbdint [38;5;241m=[39m [38;5;28;01mFalse[39;00m
+[1;32m   1121[0m     [38;5;28;01mbreak[39;00m
+
+File [0;32m~/Desktop/repos/HPC-Helper-2/.venv/lib/python3.12/site-packages/IPython/core/debugger.py:1105[0m, in [0;36mInterruptiblePdb.cmdloop[0;34m(self, intro)[0m
+[1;32m   1103[0m [38;5;250m[39m[38;5;124;03m"""Wrap cmdloop() such that KeyboardInterrupt stops the debugger."""[39;00m
+[1;32m   1104[0m [38;5;28;01mtry[39;00m:
+[0;32m-> 1105[0m     [38;5;28;01mreturn[39;00m [43mOldPdb[49m[38;5;241;43m.[39;49m[43mcmdloop[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mintro[49m[38;5;241;43m=[39;49m[43mintro[49m[43m)[49m
+[1;32m   1106[0m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyboardInterrupt[39;00m:
+[1;32m   1107[0m     [38;5;28mself[39m[38;5;241m.[39mstop_here [38;5;241m=[39m [38;5;28;01mlambda[39;00m frame: [38;5;28;01mFalse[39;00m
+
+File [0;32m~/anaconda3/lib/python3.12/cmd.py:126[0m, in [0;36mCmd.cmdloop[0;34m(self, intro)[0m
+[1;32m    124[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39muse_rawinput:
+[1;32m    125[0m     [38;5;28;01mtry[39;00m:
+[0;32m--> 126[0m         line [38;5;241m=[39m [38;5;28;43minput[39;49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mprompt[49m[43m)[49m
+[1;32m    127[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mEOFError[39;00m:
+[1;32m    128[0m         line [38;5;241m=[39m [38;5;124m'[39m[38;5;124mEOF[39m[38;5;124m'[39m
+
+File [0;32m~/Desktop/repos/HPC-Helper-2/.venv/lib/python3.12/site-packages/ipykernel/kernelbase.py:1281[0m, in [0;36mKernel.raw_input[0;34m(self, prompt)[0m
+[1;32m   1279[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m[38;5;241m.[39m_allow_stdin:
+[1;32m   1280[0m     msg [38;5;241m=[39m [38;5;124m"[39m[38;5;124mraw_input was called, but this frontend does not support input requests.[39m[38;5;124m"[39m
+[0;32m-> 1281[0m     [38;5;28;01mraise[39;00m StdinNotImplementedError(msg)
+[1;32m   1282[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_input_request(
+[1;32m   1283[0m     [38;5;28mstr[39m(prompt),
+[1;32m   1284[0m     [38;5;28mself[39m[38;5;241m.[39m_parent_ident[[38;5;124m"[39m[38;5;124mshell[39m[38;5;124m"[39m],
+[1;32m   1285[0m     [38;5;28mself[39m[38;5;241m.[39mget_parent([38;5;124m"[39m[38;5;124mshell[39m[38;5;124m"[39m),
+[1;32m   1286[0m     password[38;5;241m=[39m[38;5;28;01mFalse[39;00m,
+[1;32m   1287[0m )
+
+[0;31mStdinNotImplementedError[0m: raw_input was called, but this frontend does not support input requests.
+
